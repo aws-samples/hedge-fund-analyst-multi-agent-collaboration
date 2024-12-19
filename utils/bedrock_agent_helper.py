@@ -1604,7 +1604,16 @@ class AgentsForAmazonBedrock:
 
                             _raw_resp_str = _route['modelInvocationOutput']['rawResponse']['content']
                             _raw_resp = json.loads(_raw_resp_str)
-                            _classification = _raw_resp['content'][0]['text'].replace('<a>', '').replace('</a>', '')
+                            print(f"_raw_resp debug: {_raw_resp}")
+                            try:
+                                # try to get the classification content from the raw response
+                                _classification = _raw_resp['content'][0]['text'].replace('<a>', '').replace('</a>', '')
+                            except (KeyError, IndexError):
+                                try:
+                                    _classification = _raw_resp['output']['message']['content'][0]['text'].replace('<a>', '').replace('</a>', '')
+                                except (KeyError, IndexError) as e:
+                                    raise Exception(f"Unable to parse response structure: {str(e)}\nResponse: {_raw_resp}")
+
 
                             if _classification == UNDECIDABLE_CLASSIFICATION:
                                 print(colored(f"Routing classifier did not find a matching collaborator. Reverting to 'SUPERVISOR' mode.", "magenta"))
