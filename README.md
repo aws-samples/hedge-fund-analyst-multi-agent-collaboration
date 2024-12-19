@@ -26,7 +26,6 @@ This example demonstrates a **Hedge Fund Assistant** using MAC principles with t
 ![multi-agent-diagram](3_multi_agent_collaboration/multi-agent-diagram.png)
 
 ## Agent invocation tracking
----
 
 To enhance our multi-agent collaboration system, we've integrated Weave for comprehensive tracking of agent invocations. Weave allows us to monitor and analyze the performance of our supervisor agent and other agent calls in real-time. This integration provides valuable insights into the frequency, duration, and outcomes of agent interactions, helping us optimize the collaboration process.
 
