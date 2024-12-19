@@ -8,12 +8,20 @@ When you need more than a single agent to handle a complex task, you can create 
 With the fully managed multi-agent collaboration capability on Amazon Bedrock, specialized agents work within their domains of expertise, coordinated by a supervisor agent. The supervisor breaks down requests, delegates tasks, and consolidates outputs into a final response. For example, an investment advisory multi-agent system might include agents specialized in financial data analysis, research, forecasting, and investment recommendations. Similarly, a retail operations multi-agent system could handle demand forecasting, inventory allocation, supply chain coordination, and pricing optimization.
 
 This example demonstrates a **Hedge Fund Assistant** using MAC principles with the following structure:
-- A **Supervisor Agent** powered by the `Amazon Nova Micro` foundation model routes user queries.
+- A **Supervisor Agent** powered by the `Amazon Nova Lite` foundation model routes user queries.
 - Three **Sub-Agents**: 
-  - **Fundamental Analyst Agent**
-  - **Technical Analyst Agent**
-  - **Market Analyst Agent**
+  - **Fundamental Analyst Agent** (uses `Claude 3 Haiku` as the FM)
+  - **Technical Analyst Agent** (uses `Amazon Nova Lite` as the FM)
+  - **Market Analyst Agent** (uses `Claude 3 Haiku` as the FM)
 - Each sub-agent has access to a set of tools to fetch data, analyze it, and provide actionable insights.
+
+**Note**: In this example, we diversify the models across various sub agents based on the tasks that they need to perform as follows:
+
+  - The supervisor agent is responsible for delegating complex tasks into sub steps to the sub agents, so we power it with the newest `Amazon Nova Lite` model on Amazon Bedrock. Amazon Nova Lite is a very low-cost multimodal model that is lightning fast for processing image, video, and text inputs. The accuracy of Amazon Nova Lite across a breadth of tasks, coupled with its lightning-fast speed.
+
+  - We power the `Fundamental Analyst Agent` and the `Market Analyst Agent` with `Claude 3 Haiku` to increase speed and get optimal performance on the responses. These sub agents call external APIs to fetch information to the user.
+
+  - Lastly, the `Technical Analyst Agent` is powered by `Amazon Nova Lite`. Since this sub agent is responsible for more complex tasks as compared to the two sub agents, we use Nova Lite to get high quality responses on technical questions.
 
 ![multi-agent-diagram](3_multi_agent_collaboration/multi-agent-diagram.png)
 
@@ -53,13 +61,13 @@ The workflow includes:
     ```.bash
     git clone https://github.com/madhurprash/hedge-fund-multi-agent-collaboration.git
     ```
-1. Set Up API Keys - Create a `.env` file in the root directory with the following content (these API keys are used to fetch financial data, crawl the web and track agent actions from external sites such as Weave and Travily)
+1. Set Up API Keys - Create a [`.env`](.env) file in the root directory or modify the existing one with the following content (these API keys are used to fetch financial data, crawl the web and track agent actions from external sites such as Weave and Travily). You can create accounts and generate your API keys here: [financial datasets](https://financialdatasets.ai), [tavily](https://tavily.com) and [weave](https://wandb.ai/site/weave/).
     ```env
     WEAVE_API_KEY=<your_weave_api_key>
     TRAVILY_API_KEY=<your_travily_api_key>
     FINANCIAL_DATASET_API=<your_financial_dataset_api_key>
     ```
-1. Run all notebooks in the following order that creates the sub agents and then finally the supervisor agent to intelligently route respective requests. Run the following noteobooks in a `conda_python3` environment. All instructions and additional notes are given in the respective notebooks:
+1. Run all notebooks in the following order that creates the sub agents and then finally the supervisor agent to intelligently route respective requests. Run the following notebooks in a `conda_python3` environment. All instructions and additional notes are given in the respective notebooks:
     ```
     0_fundamental_analyst_agent
       |
