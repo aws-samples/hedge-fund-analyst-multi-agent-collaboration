@@ -37,8 +37,6 @@ Here's an example of what the Weave tracking dashboard looks like for our multi-
 
 This visualization helps us understand the flow of information between agents, identify potential bottlenecks, and assess the overall efficiency of our collaborative AI system.
 
----
-
 ## Overview of the Hedge Fund Assistant Example
 This example creates a supervisor agent and integrates the three sub-agents, each having specific tools for financial data analysis:
 1. **Fundamental Analyst Agent**:
@@ -52,8 +50,6 @@ The workflow includes:
 1. Setting up the `.env` file with required API keys.
 2. Running all notebooks to initialize the agents and integrate them into the supervisor agent.
 3. Using the `SUPERVISOR_ROUTER` collaboration mode to classify user intents and route queries efficiently.
-
----
 
 ## Prerequisites
 1. Clone this repository.
