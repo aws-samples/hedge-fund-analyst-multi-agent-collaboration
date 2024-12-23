@@ -54,7 +54,7 @@ The workflow includes:
 ## Prerequisites
 1. Clone this repository.
     ```.bash
-    git clone https://github.com/madhurprash/hedge-fund-multi-agent-collaboration.git
+    git clone https://github.com/aws-samples/hedge-fund-analyst-multi-agent-collaboration.git
     ```
 1. Set Up API Keys - Create a [`.env`](.env) file in the root directory or modify the existing one with the following content (these API keys are used to fetch financial data, crawl the web and track agent actions from external sites such as Weave and Travily). You can create accounts and generate your API keys here: [financial datasets](https://financialdatasets.ai), [tavily](https://tavily.com) and [weave](https://wandb.ai/site/weave/).
     ```env
