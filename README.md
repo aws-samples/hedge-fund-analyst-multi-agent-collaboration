@@ -62,6 +62,9 @@ The workflow includes:
     TRAVILY_API_KEY=<your_travily_api_key>
     FINANCIAL_DATASET_API=<your_financial_dataset_api_key>
     ```
+
+    **Note**: The `FINANCIAL_DATASET_API` will give you access to a specific quota for free on the website and enable you to fetch any financial data on any stock ticker. To use the API beyond the quota limits, a subscription will be required. After the quota is exceeded, the API will only be able to fetch a limited amount of data on a specific stock ticker.
+
 1. Run all notebooks in the following order that creates the sub agents and then finally the supervisor agent to intelligently route respective requests. Run the following notebooks in a `conda_python3` environment. All instructions and additional notes are given in the respective notebooks:
     ```
     0_fundamental_analyst_agent
