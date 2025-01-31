@@ -18,9 +18,9 @@ def get_income_statements(ticker, period="ttm", limit=10):
     Get income statements for a ticker. This is one of the functions that is used to get the 
     income statements based on the ticker specified by the user
     """
-    api_key = os.environ.get("FINANCIAL_DATASETS_API_KEY")
+    api_key = os.environ.get("FINANCIAL_DATASET_API")
     if not api_key:
-        return {"error": "Missing FINANCIAL_DATASETS_API_KEY environment variable"}
+        return {"error": "Missing FINANCIAL_DATASET_API environment variable"}
 
     url = (
         f'https://api.financialdatasets.ai/financials/income-statements'
@@ -39,10 +39,10 @@ def get_balance_sheets(ticker, period="ttm", limit=10):
     """
     Get balance sheets for a ticker and the specified limit and time period
     """
-    api_key = os.environ.get("FINANCIAL_DATASETS_API_KEY")
+    api_key = os.environ.get("FINANCIAL_DATASET_API")
     print(f"Fetched the financial dataset API key: {api_key}")
     if not api_key:
-        return {"error": "Missing FINANCIAL_DATASETS_API_KEY environment variable"}
+        return {"error": "Missing FINANCIAL_DATASET_API environment variable"}
 
     url = (
         f'https://api.financialdatasets.ai/financials/balance-sheets'
@@ -61,10 +61,10 @@ def get_cash_flow_statements(ticker, period="ttm", limit=10):
     """
     Get cash flow statements for a ticker
     """
-    api_key = os.environ.get("FINANCIAL_DATASETS_API_KEY")
+    api_key = os.environ.get("FINANCIAL_DATASET_API")
     print(f"Fetched the financial dataset API key: {api_key}")
     if not api_key:
-        return {"error": "Missing FINANCIAL_DATASETS_API_KEY environment variable"}
+        return {"error": "Missing FINANCIAL_DATASET_API environment variable"}
 
     url = (
         f'https://api.financialdatasets.ai/financials/cash-flow-statements'

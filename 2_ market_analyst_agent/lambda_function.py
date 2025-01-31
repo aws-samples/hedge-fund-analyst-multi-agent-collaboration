@@ -21,10 +21,10 @@ def get_options_chain(ticker: str, limit: int = 10, strike_price: Optional[float
     """
     Get options chain data for a ticker with optional filters for strike price and option type.
     """
-    api_key = os.environ.get("FINANCIAL_DATASETS_API_KEY")
+    api_key = os.environ.get("FINANCIAL_DATASET_API")
     print(f"Fetched the financial dataset API key: {api_key}")
     if not api_key:
-        return {"error": "Missing FINANCIAL_DATASETS_API_KEY environment variable"}
+        return {"error": "Missing FINANCIAL_DATASET_API environment variable"}
 
     params = {
         'ticker': ticker,
@@ -46,10 +46,10 @@ def get_insider_trades(ticker: str, limit: int = 10) -> Dict:
     """
     Get insider trading transactions for a ticker
     """
-    api_key = os.environ.get("FINANCIAL_DATASETS_API_KEY")
+    api_key = os.environ.get("FINANCIAL_DATASET_API")
     print(f"Fetched the financial dataset API key: {api_key}")
     if not api_key:
-        return {"error": "Missing FINANCIAL_DATASETS_API_KEY environment variable"}
+        return {"error": "Missing FINANCIAL_DATASET_API environment variable"}
 
     url = (
         f'https://api.financialdatasets.ai/insider-transactions'

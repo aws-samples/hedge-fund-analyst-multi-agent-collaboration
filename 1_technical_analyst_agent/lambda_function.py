@@ -27,11 +27,11 @@ def get_named_parameter(event, name):
 
 
 def get_stock_prices(ticker: str, start_date: str, end_date: str, limit: int = 5000) -> Union[Dict, str]:
-    api_key = os.environ.get("FINANCIAL_DATASETS_API_KEY")
+    api_key = os.environ.get("FINANCIAL_DATASET_API")
     logger.info(f"API Key present: {'yes' if api_key else 'no'}")
     if not api_key:
-        logger.error("Missing FINANCIAL_DATASETS_API_KEY environment variable")
-        return {"error": "Missing FINANCIAL_DATASETS_API_KEY environment variable"}
+        logger.error("Missing FINANCIAL_DATASET_API environment variable")
+        return {"error": "Missing FINANCIAL_DATASET_API environment variable"}
     url = (
         f"https://api.financialdatasets.ai/prices"
         f"?ticker={ticker}"
@@ -58,9 +58,9 @@ def get_current_stock_price(ticker: str) -> Union[Dict, str]:
     """
     Get current stock price based on the ticker provided by the user
     """
-    api_key = os.environ.get("FINANCIAL_DATASETS_API_KEY")
+    api_key = os.environ.get("FINANCIAL_DATASET_API")
     if not api_key:
-        return {"error": "Missing FINANCIAL_DATASETS_API_KEY environment variable"}
+        return {"error": "Missing FINANCIAL_DATASET_API environment variable"}
 
     url = f"https://api.financialdatasets.ai/prices/snapshot?ticker={ticker}"
 

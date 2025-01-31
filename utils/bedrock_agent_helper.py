@@ -1574,7 +1574,7 @@ class AgentsForAmazonBedrock:
                                 try:
                                     _sub_agent_name = multi_agent_names[_sub_agent_alias_id]
                                 except:
-                                    print("You haven't provided agents names. To do so provide a dictionary in the format {f'{agent_id}/{agent_alias_id}': f'{agent_name}'})")
+                                    # print("You haven't provided agents names. To do so provide a dictionary in the format {f'{agent_id}/{agent_alias_id}': f'{agent_name}'})")
                                     _sub_agent_name = "<not-yet-provided>"
 
                         # if 'collaboratorName' in _event['trace']:
